@@ -1,0 +1,371 @@
+///WEBB//
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Besar AKA</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .main-header {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .main-title {
+            font-size: 2em;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 1.5rem;
+            padding: 0 2rem;
+            line-height: 1.4;
+        }
+
+        .authors {
+            background-color: #283593;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .authors ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .authors li {
+            margin: 0.5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .description {
+            text-align: justify;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .code-section {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .results-table th, .results-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .results-table th {
+            background-color: #1a237e;
+            color: white;
+        }
+
+        .results-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .tab-container {
+            margin-top: 2rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background-color: #e9ecef;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .tab-button.active {
+            background-color: #1a237e;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .implementation-notes {
+            background-color: #e3f2fd;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .graph-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        canvas {
+            margin: 20px auto;
+            display: block;
+            max-width: 600px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        h2, h3 {
+            color: #1a237e;
+            margin-top: 2rem;
+        }
+
+        pre {
+            margin: 0;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="main-title">
+            TUGAS BESAR ANALISIS KOMPLEKSITAS ALGORITMA
+        </div>
+        <div class="subtitle">
+            Perbandingan Efisiensi Algoritma Bubble Sort dan Insertion Sort pada pengurutan Rating Gofood
+        </div>
+    </header>
+
+    <div class="authors">
+        <ul>
+            <li>1. Meyra Firdhaus Isnaini (103012300179)</li>
+            <li>2. Ghaisani Zhafarina (103012300379)</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Deskripsi</h2>
+            <div class="description">
+                <p>Studi ini bertujuan untuk membandingkan performa dua algoritma pengurutan sederhana, yaitu Bubble Sort dan Insertion Sort, dalam mengurutkan data rating makanan dari restoran pada platform GoFood. Pengujian ini untuk mengevaluasi efisiensi setiap algoritma berdasarkan waktu yang dibutuhkan (running time).</p>
+                <p>Analisis akan menunjukkan bagaimana teori kompleksitas waktu O(n²) diterapkan dalam praktik dan algoritma mana yang lebih cepat dalam situasi tertentu. Dengan membandingkan kedua algoritma, studi ini memberikan wawasan tentang kelebihan dan kekurangan masing-masing serta situasi mana yang lebih cocok untuk digunakan dalam pengurutan rating makanan.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Studi Kasus</h2>
+            <div class="description">
+                <p>Kami akan melakukan perbandingan antara dua algoritma pengurutan yaitu Bubble Sort sebagai algoritma iteratif dan Insertion Sort sebagai algoritma rekursif dalam konteks pengurutan data rating makanan dari restoran yang ada di Yogyakarta pada platform Gofood.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Hasil Perbandingan</h2>
+            <div class="graph-container">
+                <canvas id="timeComparison"></canvas>
+            </div>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Ukuran Data</th>
+                        <th>Bubble Sort (detik)</th>
+                        <th>Recursive Insertion Sort (detik)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10</td>
+                        <td>0.0001</td>
+                        <td>0.0001</td>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td>0.0005</td>
+                        <td>0.0003</td>
+                    </tr>
+                    <tr>
+                        <td>100</td>
+                        <td>0.0015</td>
+                        <td>0.0008</td>
+                    </tr>
+                    <tr>
+                        <td>200</td>
+                        <td>0.0045</td>
+                        <td>0.0020</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>0.0250</td>
+                        <td>0.0080</td>
+                    </tr>
+                    <tr>
+                        <td>800</td>
+                        <td>0.0600</td>
+                        <td>0.0150</td>
+                    </tr>
+                    <tr>
+                        <td>1000</td>
+                        <td>0.0900</td>
+                        <td>0.0200</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Top 20 Ratings Restoran GoFood</h2>
+            <table id="topRatings">
+                <thead>
+                    <tr>
+                        <th>Nama Restoran</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data akan ditambahkan di sini -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Data running time untuk grafik
+        const dataSizes = [10, 50, 100, 200, 500, 800, 1000];
+        const bubbleSortTimes = [0.0001, 0.0005, 0.0015, 0.0045, 0.0250, 0.0600, 0.0900];
+        const insertionSortTimes = [0.0001, 0.0003, 0.0008, 0.0020, 0.0080, 0.0150, 0.0200];
+
+        const ctx = document.getElementById('timeComparison').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dataSizes,
+                datasets: [
+                    {
+                        label: 'Bubble Sort (detik)',
+                        data: bubbleSortTimes,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    },
+                    {
+                        label: 'Insertion Sort (detik)',
+                        data: insertionSortTimes,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Perbandingan Running Time Algoritma'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Ukuran Data'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Waktu (detik)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Parsing CSV untuk GoFood Ratings
+        async function loadCSV() {
+            const response = await fetch('gofood_ratings.csv');
+            const text = await response.text();
+            const rows = text.trim().split('\n').slice(1); // Hapus header
+            const data = rows.map(row => {
+                const [name, rating] = row.split(',');
+                return { name: name.trim(), rating: parseFloat(rating.trim()) };
+            });
+
+            // Sorting berdasarkan rating descending
+            data.sort((a, b) => b.rating - a.rating);
+
+            // Ambil top 20
+            const top20 = data.slice(0, 20);
+            const tbody = document.getElementById('topRatings').querySelector('tbody');
+            top20.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${item.name}</td><td>${item.rating}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        loadCSV();
+    </script>
+</body>
+</html>
