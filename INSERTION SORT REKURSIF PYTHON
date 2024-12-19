@@ -1,0 +1,58 @@
+import csv
+
+# Helper function untuk menyisipkan elemen ke posisi yang tepat
+def insert(data, i):
+    if i <= 0:
+        return
+
+    key = data[i]
+    j = i - 1
+
+    # Geser elemen ke kanan jika lebih kecil dari elemen sebelumnya
+    while j >= 0:
+        rating1 = float(data[j][0])
+        ratingKey = float(key[0])
+        if rating1 < ratingKey:
+            data[j + 1] = data[j]
+            j -= 1
+        else:
+            break
+    data[j + 1] = key
+
+# Rekursif Insertion Sort untuk mengurutkan data
+def recursive_insertion_sort(data, i):
+    if i == len(data):  # Basis kasus
+        return data
+
+    insert(data, i)                          # Sisipkan elemen ke tempat yang sesuai
+    return recursive_insertion_sort(data, i + 1)  # Rekursi ke elemen berikutnya
+
+def main():
+    file_path = "C:/Users/Ghaisani/Documents/Telkom/Semester 3/AKA/gofood_ratings.csv"
+    
+    try:
+        # Baca file CSV
+        with open(file_path, mode='r') as file:
+            reader = csv.reader(file)
+            data = []
+            for row in reader:
+                if len(row) > 2:
+                    # Ambil hanya 'average' dari ratings
+                    rating = row[0].split(":")[1].strip().strip("'}")
+                    brand_name = row[2]
+                    data.append([rating, brand_name])
+    except FileNotFoundError:
+        print(f"Error: File {file_path} tidak ditemukan.")
+        return
+
+    # Urutkan menggunakan Insertion Sort rekursif
+    print("Mengurutkan dengan Insertion Sort rekursif...")
+    sorted_data = recursive_insertion_sort(data, 1)
+
+    # Tampilkan hasil
+    print("\nHasil Pengurutan:")
+    for row in sorted_data:
+        print(f"{row[1]} - {row[0]}")  # Tampilkan brand.displayName dan rating
+
+if __name__ == "__main__":
+    main()
