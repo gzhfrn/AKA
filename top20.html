@@ -1,0 +1,300 @@
+////TOP 20///
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 20 Restaurant Rankings</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .rankings-container {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .ranking-column {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        h2 {
+            color: #1a237e;
+            margin-top: 0;
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #1a237e;
+        }
+
+        .restaurant-item {
+            padding: 1rem;
+            margin: 0.8rem 0;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #1a237e;
+            transition: transform 0.2s;
+        }
+
+        .restaurant-item:hover {
+            transform: translateX(5px);
+        }
+
+        .rating {
+            font-weight: bold;
+            color: #1a237e;
+            margin-right: 0.5rem;
+            font-size: 1.1em;
+        }
+
+        .rank {
+            display: inline-block;
+            width: 25px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .restaurant-name {
+            font-size: 1.05em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Hasil Pengurutan Top 20 Restaurant</h1>
+    </div>
+
+    <div class="rankings-container">
+        <div class="ranking-column">
+            <h2>Bubble Sort Rankings</h2>
+            <div class="restaurant-item">
+                <span class="rank">1.</span>
+                <span class="rating">4.9</span>
+                <span class="restaurant-name">Warung Makan Keyla</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">2.</span>
+                <span class="rating">4.8</span>
+                <span class="restaurant-name">Pengilon, Karang Mloko</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">3.</span>
+                <span class="rating">4.8</span>
+                <span class="restaurant-name">Al-Fazza Special Seblak, Gamping</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">4.</span>
+                <span class="rating">4.8</span>
+                <span class="restaurant-name">Mixue, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">5.</span>
+                <span class="rating">4.8</span>
+                <span class="restaurant-name">Fried Bebek H. Slamet, North Ring Road</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">6.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">McDonald's, Jombor Sleman</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">7.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Takoyaki Crispy Mr. Kev, Ngaglik</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">8.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">ORIGINAL MADURA CHICKEN SATE CAK AMIN</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">9.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Solaria, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">10.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Mie Gacoan, Jombor Yogyakarta</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">11.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Pizza Hut, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">12.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">KFC, Jl Magelang Yogyakarta</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">13.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Marugame Udon & Tempura, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">14.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Cheon, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">15.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Nasi Kuning Dan Mendoan Mak Alfi</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">16.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">YOSHINOYA BEEF BOWL, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">17.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Richeese Factory, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">18.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Madurese Chicken Satay Cak Faizal</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">19.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Jakarta Chicken Porridge Panghegar</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">20.</span>
+                <span class="rating">4.6</span>
+                <span class="restaurant-name">Kebab Container by Baba Rafi, Medari</span>
+            </div>
+        </div>
+
+        <div class="ranking-column">
+            <h2>Recursive Insertion Sort Rankings</h2>
+            <div class="restaurant-item">
+                <span class="rank">1.</span>
+                <span class="rating">4.9</span>
+                <span class="restaurant-name">Warung Makan Keyla</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">2.</span>
+                <span class="rating">4.8</span>
+                <span class="restaurant-name">Pengilon, Karang Mloko</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">3.</span>
+                <span class="rating">4.8</span>
+                <span class="restaurant-name">Al-Fazza Special Seblak, Gamping</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">4.</span>
+                <span class="rating">4.8</span>
+                <span class="restaurant-name">Mixue, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">5.</span>
+                <span class="rating">4.8</span>
+                <span class="restaurant-name">Fried Bebek H. Slamet, North Ring Road</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">6.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">McDonald's, Jombor Sleman</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">7.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Takoyaki Crispy Mr. Kev, Ngaglik</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">8.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">ORIGINAL MADURA CHICKEN SATE CAK AMIN</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">9.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Solaria, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">10.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Mie Gacoan, Jombor Yogyakarta</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">11.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Pizza Hut, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">12.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">KFC, Jl Magelang Yogyakarta</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">13.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Marugame Udon & Tempura, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">14.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Cheon, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">15.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Nasi Kuning Dan Mendoan Mak Alfi</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">16.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">YOSHINOYA BEEF BOWL, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">17.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Richeese Factory, Jogja City Mall</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">18.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Madurese Chicken Satay Cak Faizal</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">19.</span>
+                <span class="rating">4.7</span>
+                <span class="restaurant-name">Jakarta Chicken Porridge Panghegar</span>
+            </div>
+            <div class="restaurant-item">
+                <span class="rank">20.</span>
+                <span class="rating">4.6</span>
+                <span class="restaurant-name">Kebab Container by Baba Rafi, Medari</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
