@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Besar AKA</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .main-header {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .main-title {
+            font-size: 2em;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 1.5rem;
+            padding: 0 2rem;
+            line-height: 1.4;
+        }
+
+        .authors {
+            background-color: #283593;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .authors ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .authors li {
+            margin: 0.5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .description {
+            text-align: justify;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .code-section {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .results-table th, .results-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .results-table th {
+            background-color: #1a237e;
+            color: white;
+        }
+
+        .results-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .tab-container {
+            margin-top: 2rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background-color: #e9ecef;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .tab-button.active {
+            background-color: #1a237e;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .implementation-notes {
+            background-color: #e3f2fd;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .graph-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .rankings-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ranking-column {
+            flex: 1;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .restaurant-item {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #1a237e;
+        }
+
+        .rating {
+            font-weight: bold;
+            color: #1a237e;
+            margin-right: 0.5rem;
+        }
+
+        h2, h3 {
+            color: #1a237e;
+            margin-top: 2rem;
+        }
+
+        pre {
+            margin: 0;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+
+        .chart-title {
+            text-align: center;
+            color: #1a237e;
+            font-size: 1.5em;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="main-title">
+            TUGAS BESAR ANALISIS KOMPLEKSITAS ALGORITMA
+        </div>
+        <div class="subtitle">
+            Perbandingan Efisiensi Algoritma Bubble Sort dan Insertion Sort pada pengurutan Rating Gofood
+        </div>
+    </header>
+
+    <div class="authors">
+        <ul>
+            <li>1. Meyra Firdhaus Isnaini (103012300179)</li>
+            <li>2. Ghaisani Zhafarina (103012300379)</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Deskripsi</h2>
+            <div class="description">
+                <p>Studi ini bertujuan untuk membandingkan performa dua algoritma pengurutan sederhana, yaitu Bubble Sort dan Insertion Sort, dalam mengurutkan data rating makanan dari restoran pada platform GoFood. Pengujian ini untuk mengevaluasi efisiensi setiap algoritma berdasarkan waktu yang dibutuhkan (running time).</p>
+                <p>Analisis akan menunjukkan bagaimana teori kompleksitas waktu O(n²) diterapkan dalam praktik dan algoritma mana yang lebih cepat dalam situasi tertentu. Dengan membandingkan kedua algoritma, studi ini memberikan wawasan tentang kelebihan dan kekurangan masing-masing serta situasi mana yang lebih cocok untuk digunakan dalam pengurutan rating makanan.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Studi Kasus</h2>
+            <div class="description">
+                <p>Kami akan melakukan perbandingan antara dua algoritma pengurutan yaitu Bubble Sort sebagai algoritma iteratif dan Insertion Sort sebagai algoritma rekursif dalam konteks pengurutan data rating makanan dari restoran yang ada di Yogyakarta pada platform Gofood.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Implementasi Algoritma</h2>
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('bubble')">Bubble Sort</button>
+                    <button class="tab-button" onclick="showTab('insertion')">Recursive Insertion Sort</button>
+                    <button class="tab-button" onclick="showTab('comparison')">Comparison Analysis</button>
+                </div>
+
+                <div id="bubble" class="tab-content active">
+                    <h3>Bubble Sort Implementation</h3>
+                    <div class="implementation-notes">
+                        <p>Implementasi Bubble Sort menggunakan pendekatan iteratif untuk mengurutkan data rating GoFood secara descending.</p>
+                    </div>
+                    <div class="code-section">
+                        <pre><code class="language-go">
+// BubbleSort untuk mengurutkan berdasarkan rating
+func BubbleSort(data [][]string) [][]string {
+    n := len(data)
+    for i := 0; i < n-1; i++ {
+        for j := 0; j < n-i-1; j++ {
+            rating1, _ := strconv.ParseFloat(data[j][0], 64)
+            rating2, _ := strconv.ParseFloat(data[j+1][0], 64)
+            if rating1 < rating2 { // Tukar jika rating1 lebih kecil
+                data[j], data[j+1] = data[j+1], data[j]
+            }
+        }
+    }
+    return data
+}</code></pre>
+                    </div>
+                </div>
+
+                <div id="insertion" class="tab-content">
+                    <h3>Recursive Insertion Sort Implementation</h3>
+                    <div class="implementation-notes">
+                        <p>Implementasi Insertion Sort menggunakan pendekatan rekursif untuk mengurutkan data rating GoFood secara descending.</p>
+                    </div>
+                    <div class="code-section">
+                        <pre><code class="language-go">
+// Rekursif insertion sort helper untuk menyisipkan elemen ke posisi yang tepat
+func insert(data [][]string, i int) {
+    if i <= 0 {
+        return
+    }
+    key := data[i]
+    j := i - 1
+    for j >= 0 {
+        rating1, _ := strconv.ParseFloat(data[j][0], 64)
+        ratingKey, _ := strconv.ParseFloat(key[0], 64)
+        if rating1 < ratingKey {
+            data[j+1] = data[j]
+            j--
+        } else {
+            break
+        }
+    }
+    data[j+1] = key
+}
+
+// Rekursif insertion sort untuk mengurutkan data
+func RecursiveInsertionSort(data [][]string, i int) [][]string {
+    if i == len(data) { // Basis kasus
+        return data
+    }
+    insert(data, i)                          // Sisipkan elemen ke tempat yang sesuai
+    return RecursiveInsertionSort(data, i+1) // Rekursi ke elemen berikutnya
+}</code></pre>
+                    </div>
+                </div>
+
+                <div id="comparison" class="tab-content">
+                    <h3>Comparison Analysis Implementation</h3>
+                    <div class="implementation-notes">
+                        <p>Implementasi kode untuk membandingkan waktu eksekusi kedua algoritma dengan berbagai ukuran data.</p>
+                    </div>
+                    <div class="code-section">
+                        <pre><code class="language-go">
+func main() {
+    // Ukuran data yang akan diuji
+    sizes := []int{10, 50, 100, 200, 500, 800, 1000}
+    var bubbleTimes []float64
+    var insertionTimes []float64
+
+    for _, size := range sizes {
+        sampleData := make([][]string, size)
+        copy(sampleData, data[:size])
+
+        // Ukur waktu untuk Bubble Sort
+        startBubble := time.Now()
+        BubbleSort(sampleData)
+        elapsedBubble := time.Since(startBubble)
+        bubbleTimes = append(bubbleTimes, elapsedBubble.Seconds())
+
+        // Ukur waktu untuk Recursive Insertion Sort
+        startInsertion := time.Now()
+        RecursiveInsertionSort(sampleData, 1)
+        elapsedInsertion := time.Since(startInsertion)
+        insertionTimes = append(insertionTimes, elapsedInsertion.Seconds())
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div id="comparison" class="tab-content">
+                    <h3>Comparison Analysis Implementation</h3>
+                    <div class="implementation-notes">
+                        <p>Implementasi kode untuk membandingkan waktu eksekusi kedua algoritma dengan berbagai ukuran data.</p>
+                    </div>
+                    <div class="code-section">
+                        <pre><code class="language-go">
+func main() {
+    // Ukuran data yang akan diuji
+    sizes := []int{10, 50, 100, 200, 500, 800, 1000}
+    var bubbleTimes []float64
+    var insertionTimes []float64
+
+    for _, size := range sizes {
+        sampleData := make([][]string, size)
+        copy(sampleData, data[:size])
+
+        // Ukur waktu untuk Bubble Sort
+        startBubble := time.Now()
+        BubbleSort(sampleData)
+        elapsedBubble := time.Since(startBubble)
+        bubbleTimes = append(bubbleTimes, elapsedBubble.Seconds())
+
+        // Ukur waktu untuk Recursive Insertion Sort
+        startInsertion := time.Now()
+        RecursiveInsertionSort(sampleData, 1)
+        elapsedInsertion := time.Since(startInsertion)
+        insertionTimes = append(insertionTimes, elapsedInsertion.Seconds())
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Hasil Perbandingan</h2>
+            <div class="graph-container">
+                <div class="chart-title">Perbandingan Waktu Eksekusi Algoritma</div>
+                <canvas id="comparisonChart"></canvas>
+            </div>
+            
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Ukuran Data</th>
+                        <th>Bubble Sort (detik)</th>
+                        <th>Recursive Insertion Sort (detik)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10</td>
+                        <td>0.0001</td>
+                        <td>0.0001</td>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td>0.0005</td>
+                        <td>0.0003</td>
+                    </tr>
+                    <tr>
+                        <td>100</td>
+                        <td>0.0015</td>
+                        <td>0.0008</td>
+                    </tr>
+                    <tr>
+                        <td>200</td>
+                        <td>0.0045</td>
+                        <td>0.0020</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>0.0250</td>
+                        <td>0.0080</td>
+                    </tr>
+                    <tr>
+                        <td>800</td>
+                        <td>0.0600</td>
+                        <td>0.0150</td>
+                    </tr>
+                    <tr>
+                        <td>1000</td>
+                        <td>0.0900</td>
+                        <td>0.0200</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+<!-- gambar grafik-->
+        <script>
+            const ctx = document.getElementById('comparisonChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['10', '50', '100', '200', '500', '800', '1000'],
+                    datasets: [{
+                        label: 'Bubble Sort',
+                        data: [0.0001, 0.0005, 0.0015, 0.0045, 0.0250, 0.0600, 0.0900],
+                        borderColor: '#1a237e',
+                        tension: 0.4
+                    }, {
+                        label: 'Recursive Insertion Sort',
+                        data: [0.0001, 0.0003, 0.0008, 0.0020, 0.0080, 0.0150, 0.0200],
+                        borderColor: '#4CAF50',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Algorithm Running Time Comparison',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Data Size'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Time (seconds)'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <div class="section">
+            <h1>Hasil Pengurutan Top 20 Restaurant</h1>
+        </div>
+    
+        <div class="rankings-container">
+            <div class="ranking-column">
+                <h2>Bubble Sort Rankings</h2>
+                <div class="restaurant-item">
+                    <span class="rank">1.</span>
+                    <span class="rating">4.9</span>
+                    <span class="restaurant-name">Warung Makan Keyla</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">2.</span>
+                    <span class="rating">4.8</span>
+                    <span class="restaurant-name">Pengilon, Karang Mloko</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">3.</span>
+                    <span class="rating">4.8</span>
+                    <span class="restaurant-name">Al-Fazza Special Seblak, Gamping</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">4.</span>
+                    <span class="rating">4.8</span>
+                    <span class="restaurant-name">Mixue, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">5.</span>
+                    <span class="rating">4.8</span>
+                    <span class="restaurant-name">Fried Bebek H. Slamet, North Ring Road</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">6.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">McDonald's, Jombor Sleman</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">7.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Takoyaki Crispy Mr. Kev, Ngaglik</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">8.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">ORIGINAL MADURA CHICKEN SATE CAK AMIN</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">9.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Solaria, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">10.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Mie Gacoan, Jombor Yogyakarta</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">11.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Pizza Hut, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">12.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">KFC, Jl Magelang Yogyakarta</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">13.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Marugame Udon & Tempura, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">14.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Cheon, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">15.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Nasi Kuning Dan Mendoan Mak Alfi</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">16.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">YOSHINOYA BEEF BOWL, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">17.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Richeese Factory, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">18.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Madurese Chicken Satay Cak Faizal</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">19.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Jakarta Chicken Porridge Panghegar</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">20.</span>
+                    <span class="rating">4.6</span>
+                    <span class="restaurant-name">Kebab Container by Baba Rafi, Medari</span>
+                </div>
+            </div>
+    
+            <div class="ranking-column">
+                <h2>Recursive Insertion Sort Rankings</h2>
+                <div class="restaurant-item">
+                    <span class="rank">1.</span>
+                    <span class="rating">4.9</span>
+                    <span class="restaurant-name">Warung Makan Keyla</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">2.</span>
+                    <span class="rating">4.8</span>
+                    <span class="restaurant-name">Pengilon, Karang Mloko</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">3.</span>
+                    <span class="rating">4.8</span>
+                    <span class="restaurant-name">Al-Fazza Special Seblak, Gamping</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">4.</span>
+                    <span class="rating">4.8</span>
+                    <span class="restaurant-name">Mixue, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">5.</span>
+                    <span class="rating">4.8</span>
+                    <span class="restaurant-name">Fried Bebek H. Slamet, North Ring Road</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">6.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">McDonald's, Jombor Sleman</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">7.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Takoyaki Crispy Mr. Kev, Ngaglik</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">8.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">ORIGINAL MADURA CHICKEN SATE CAK AMIN</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">9.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Solaria, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">10.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Mie Gacoan, Jombor Yogyakarta</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">11.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Pizza Hut, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">12.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">KFC, Jl Magelang Yogyakarta</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">13.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Marugame Udon & Tempura, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">14.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Cheon, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">15.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Nasi Kuning Dan Mendoan Mak Alfi</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">16.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">YOSHINOYA BEEF BOWL, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">17.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Richeese Factory, Jogja City Mall</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">18.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Madurese Chicken Satay Cak Faizal</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">19.</span>
+                    <span class="rating">4.7</span>
+                    <span class="restaurant-name">Jakarta Chicken Porridge Panghegar</span>
+                </div>
+                <div class="restaurant-item">
+                    <span class="rank">20.</span>
+                    <span class="rating">4.6</span>
+                    <span class="restaurant-name">Kebab Container by Baba Rafi, Medari</span>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
