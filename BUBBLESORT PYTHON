@@ -1,0 +1,45 @@
+//BUBBLE SORT ITERATIF
+
+
+import csv
+
+# Fungsi Bubble Sort untuk mengurutkan berdasarkan rating
+def bubble_sort(data):
+    n = len(data)
+    for i in range(n - 1):
+        for j in range(n - i - 1):
+            rating1 = float(data[j][0])
+            rating2 = float(data[j + 1][0])
+            if rating1 < rating2:  # Tukar jika rating1 lebih kecil
+                data[j], data[j + 1] = data[j + 1], data[j]
+    return data
+
+def main():
+    file_path = "C:/Users/Ghaisani/Documents/Telkom/Semester 3/AKA/gofood_ratings.csv"
+    
+    try:
+        # Baca file CSV
+        with open(file_path, mode='r') as file:
+            reader = csv.reader(file)
+            data = []
+            for row in reader:
+                if len(row) > 2:
+                    # Ambil hanya 'average' dari ratings
+                    rating = row[0].split(":")[1].strip().strip("'}")
+                    brand_name = row[2]
+                    data.append([rating, brand_name])
+    except FileNotFoundError:
+        print(f"Error: File {file_path} tidak ditemukan.")
+        return
+
+    # Urutkan menggunakan Bubble Sort
+    print("Mengurutkan dengan Bubble Sort...")
+    sorted_data = bubble_sort(data)
+
+    # Tampilkan hasil
+    print("\nHasil Pengurutan:")
+    for row in sorted_data:
+        print(f"{row[1]} - {row[0]}")  # Tampilkan brand.displayName dan rating
+
+if __name__ == "__main__":
+    main()
